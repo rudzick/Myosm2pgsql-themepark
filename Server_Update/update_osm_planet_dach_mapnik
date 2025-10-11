@@ -3,5 +3,5 @@ set -euo pipefail
 styledir=/home/renderaccount/Myosm2pgsql-themepark/
 cd /home/postgres/download
 # inkrementelles Datenbankupdate mit osm2psql-replication
-/usr/bin/osm2pgsql-replication update -d themeparktest --diff-file /home/postgres/download/tp_changes.osc.gz -- -O flex --style $styledir/config.lua
+/usr/bin/osm2pgsql-replication update -d themeparktest --diff-file /home/postgres/download/tp_changes.osc.gz -- -O flex --flat-nodes /home/postgres/download/tpflat.nodes --slim -C 5000  --style $styledir/config.lua
 

@@ -11,9 +11,11 @@ then
     rm $planetfilea
 fi
 # Aufbau der lokalen Postgis-Datenbank mit osm2psql
-/usr/bin/wget https://download.geofabrik.de/europe/germany/$planetfilea && /usr/bin/osm2pgsql -O flex --create --slim -C 5000 --style $styledir/config.lua -d themeparktest $planetfilea
+/usr/bin/wget https://download.geofabrik.de/europe/germany/$planetfilea && /usr/bin/osm2pgsql -O flex --create --flat-nodes /home/postgres/download/tpflat.nodes --slim -C 5000 --style $styledir/config.lua -d themeparktest $planetfilea
 # Initialisierung des inkrementellen Datenbankupdates
 /usr/bin/osm2pgsql-replication init -d themeparktest --server 'https://planet.openstreetmap.org/replication/minute'
 # erstes inkrementelles Datenbankupdate
 $styledir/Server_Update/update_osm_planet_dach_mapnik
+# Zugiff auf Tabellen freigeben
+psql -d themeparktest -c "GRANT SELECT ON ALL TABLES TO public;"
 
