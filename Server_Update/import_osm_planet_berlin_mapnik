@@ -17,5 +17,5 @@ fi
 # erstes inkrementelles Datenbankupdate
 $styledir/Server_Update/update_osm_planet_dach_mapnik
 # Zugiff auf Tabellen freigeben
-psql -d themeparktest -c "GRANT SELECT ON ALL TABLES TO public;"
+psql -d themeparktest -c "GRANT pg_read_all_data TO _renderd;"
 
