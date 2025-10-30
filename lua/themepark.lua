@@ -265,7 +265,11 @@ function themepark:add_topic(topic, options)
         error('Load failed: ' .. msg)
     end
 
-    local result = func(self, theme, options or {})
+    local status, result = pcall(func, self, theme, options or {})
+    if not status then
+        print("Themepark: Adding topic '" .. topic .. "' from theme '" .. theme_name .. "' failed:")
+        error(result, 2)
+    end
 
     if self.debug then
         print("Themepark: Adding topic '" .. topic .. "' from theme '" .. theme_name .. "' done.")
