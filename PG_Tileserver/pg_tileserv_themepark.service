@@ -14,14 +14,17 @@ After=postgresql.service
 
 
 [Service]
-RestartSec=2s
+RestartSec=10s
 Type=simple
 User=pgtileserv
 Group=pgtileserv
 WorkingDirectory=/home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/
 
-ExecStart=/home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/pg_tileserv --config /home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/config/pg_tileserv_themepark.toml
+ExecStart=/usr/local/bin/pg_tileserv --config /home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/config/pg_tileserv_themepark.toml
 Restart=always
+
+StandardOutput=append:/var/log/pg_tileserv/themepark.log
+StandardError=append:/var/log/pg_tileserv/themepark.errlog
 
 [Install]
 WantedBy=multi-user.target
