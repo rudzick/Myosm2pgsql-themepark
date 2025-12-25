@@ -133,7 +133,17 @@ function themepark:columns(...)
         local cols = v
         if type(v) == 'string' then
             local elements = osm2pgsql.split_string(v, '/')
-            cols = self._columns[elements[1]][elements[2]]
+            if #elements ~= 2 then
+                error("Use 'theme/column' format or table with columns as parameters in columns() function", 2)
+            end
+            local column_theme = self._columns[elements[1]]
+            if not column_theme then
+                error("Unknown column theme '" .. elements[1] .. "'", 2)
+            end
+            if not column_theme[elements[2]] then
+                error("Unknown column '" .. elements[2] .. "' in theme '" .. elements[1] .. "'", 2)
+            end
+            cols = column_theme[elements[2]]
         end
         for _, c in ipairs(cols) do
             table.insert(columns, c)
@@ -255,7 +265,11 @@ function themepark:add_topic(topic, options)
         error('Load failed: ' .. msg)
     end
 
-    local result = func(self, theme, options or {})
+    local status, result = pcall(func, self, theme, options or {})
+    if not status then
+        print("Themepark: Adding topic '" .. topic .. "' from theme '" .. theme_name .. "' failed:")
+        error(result, 2)
+    end
 
     if self.debug then
         print("Themepark: Adding topic '" .. topic .. "' from theme '" .. theme_name .. "' done.")
