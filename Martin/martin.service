@@ -1,0 +1,30 @@
+[Unit]
+Description=PG TileServ (PostGIS tile server)
+After=syslog.target
+After=network.target
+###
+
+# Don't forget to add the database service dependencies
+
+###
+
+Wants=postgresql.service
+
+After=postgresql.service
+
+
+[Service]
+RestartSec=10s
+Type=simple
+User=pgtileserv
+Group=pgtileserv
+WorkingDirectory=/home/renderaccount/Myosm2pgsql-themepark/Martin/
+
+ExecStart=/usr/bin/martin --config /home/renderaccount/Myosm2pgsql-themepark/Martin/config.yaml
+Restart=always
+
+StandardOutput=append:/var/log/martin/martin.log
+StandardError=append:/var/log/martin/martin.errlog
+
+[Install]
+WantedBy=multi-user.target
