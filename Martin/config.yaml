@@ -199,7 +199,7 @@ postgres:
       # covered by all zoom levels. The bounds are represented in WGS:84 latitude
       # and longitude values, in the order left, bottom, right, top. Values may
       # be integers or floating point numbers.
-      bounds: [-180.0, -90.0, 180.0, 90.0]
+      #bounds: [-180.0, -90.0, 180.0, 90.0]
 
       # Tile extent in tile coordinate space
       extent: 4096
@@ -273,116 +273,33 @@ postgres:
   # - `true`: run automatic discovery (`true` may be omitted if further configuration is provided)
   # - `false`: disable automatic discovery
   # - null: run automatic discovery if postgres.tables is null and postgres.functions is null
-  auto_publish:
-    # Optionally limit to just these schemas
-    from_schemas:
-      - public
-      - my_schema
-    # Here we enable both tables and functions auto discovery.
-    # You can also enable just one of them by not mentioning the other, or
-    # setting it to false. Setting one to true disables the other one as well.
-    # E.g. `tables: false` enables just the functions auto-discovery.
-    tables:
-      # Optionally set how source ID should be generated based on the table's name,
-      # schema, and geometry column
-      source_id_format: "table.{schema}.{table}.{column}"
-      # Add more schemas to the ones listed above
-      from_schemas: my_other_schema
-      # A table column to use as the feature ID
-      # If a table has no column with this name, `id_column` will not be set for
-      # that table.
-      # If a list of strings is given, the first found column will be treated as a
-      # feature ID.
-      id_columns: feature_id
-      # Controls if geometries should be clipped or encoded as is [default: true]
-      clip_geom: true
-      # Buffer distance in tile coordinate space to optionally clip geometries,
-      # optional, default to 64
-      buffer: 64
-      # Tile extent in tile coordinate space, optional, default to 4096
-      extent: 4096
-    functions:
-      # Optionally limit to just these schemas
-      from_schemas:
-        - public
-        - my_schema
-      # Optionally set how source ID should be generated based on the function's
-      # name and schema
-      source_id_format: "{schema}.{function}"
-
-  # Associative arrays of table sources
+  auto_publish: true
   tables:
-    table_source_id:
-      # ID of the MVT layer (optional, defaults to table name)
-      layer_id: table_source
-
-      # Table schema (required)
+    parzgrview:
       schema: public
-
-      # Table name (required)
-      table: table_source
-
-      # Geometry SRID (required)
-      srid: 4326
-
-      # Geometry column name (required)
-      geometry_column: geom
-
-      # Feature id column name
-      id_column: ~
-
-      # An integer specifying the minimum zoom level
-      minzoom: 0
-
-      # An integer specifying the maximum zoom level. MUST be >= minzoom
-      maxzoom: 30
-
-      # The maximum extent of available map tiles. Bounds MUST define an area
-      # covered by all zoom levels. The bounds are represented in WGS:84 latitude
-      # and longitude values, in the order left, bottom, right, top. Values may
-      # be integers or floating point numbers.
-      bounds: [-180.0, -90.0, 180.0, 90.0]
-
-      # Tile extent in tile coordinate space
-      extent: 4096
-
-      # Buffer distance in tile coordinate space to optionally clip geometries
-      buffer: 64
-
-      # Boolean to control if geometries should be clipped or encoded as is
-      clip_geom: true
-
-      # Geometry type
+      table: parzellengrenzen_view
+      srid: 3857
+      geometry_column: way
       geometry_type: GEOMETRY
-
-      # List of columns, that should be encoded as tile properties (required)
-      #
-      # Keys and values are the names and descriptions of attributes available in this layer.
-      # Each value (description) must be a string that describes the underlying data.
-      # If no fields (=just the geometry) should be encoded, an empty object is allowed.
       properties:
-        gid: int4
-
-  # Associative arrays of function sources
-  functions:
-    function_source_id:
-      # Schema name (required)
+        barrier: text
+        ref: text
+    parzellengrenzen_epsg25833:
       schema: public
-
-      # Function name (required)
-      function: function_zxy_query
-
-      # An integer specifying the minimum zoom level
-      minzoom: 0
-
-      # An integer specifying the maximum zoom level. MUST be >= minzoom
-      maxzoom: 30
-
-      # The maximum extent of available map tiles. Bounds MUST define an area
-      # covered by all zoom levels. The bounds are represented in WGS:84
-      # latitude and longitude values, in the order left, bottom, right, top.
-      # Values may be integers or floating point numbers.
-      bounds: [-180.0, -90.0, 180.0, 90.0]
+      table: parzellengrenzen_epsg25833
+      srid: 25833
+      geometry_column: way
+#      bounds: [366919.0471291578, 5793125.017742313, 416682.64044311404, 5842888.611056269]
+      bounds:
+      - 13.0495192
+      - 52.272373
+      - 13.7661758
+      - 52.7294492
+      geometry_type: POLYGON
+      properties:
+        barrier: text
+        ref: text
+  functions: {}
 
 # Publish PMTiles files from local disk or proxy to a web server
 pmtiles:
