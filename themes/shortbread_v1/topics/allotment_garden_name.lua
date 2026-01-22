@@ -1,14 +1,14 @@
 -- ---------------------------------------------------------------------------
 --
 -- Theme: shortbread_v1
--- Topic: allotment_plot_number
+-- Topic: allotment_garden_name
 --
 -- ---------------------------------------------------------------------------
 
 local themepark, theme, cfg = ...
 
 themepark:add_table{
-    name = 'allotment_plot_number',
+    name = 'allotment_garden_name',
     ids_type = 'any',
     geom = 'point',
     columns = themepark:columns({
@@ -16,16 +16,9 @@ themepark:add_table{
     }),
     tags = { },
     tiles = {
-        minzoom = 16,
+        minzoom = 15,
     },
 }
-
--- --------------------------------------------------------------------------
-
-local function reftail(s)
-      return string.gsub(s,"^.*/", "")
-end
-
 
 -- ---------------------------------------------------------------------------
 
@@ -36,11 +29,9 @@ themepark:add_proc('way', function(object, data)
     end
 
     local a = object
-
-    if a and a.tags.allotments and a.tags.allotments == 'plot' and a.tags.ref then
+    if a and a.tags.landuse and a.tags.landuse == 'allotments' then
         a.geom = object:as_polygon():pole_of_inaccessibility()
-	object.tags.reftail = reftail(object.tags.ref)
-        themepark:insert('allotment_plot_number', a, object.tags)
+        themepark:insert('allotment_garden_name', a, object.tags)
     end
 end)
 
