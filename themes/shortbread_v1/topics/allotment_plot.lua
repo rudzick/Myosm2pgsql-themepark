@@ -9,7 +9,7 @@ local themepark, theme, cfg = ...
 
 themepark:add_table{
     name = 'allotment_plot_number',
-    ids_type = 'node',
+    ids_type = 'any',
     geom = 'point',
     columns = themepark:columns({
         { column = 'tags', type = 'jsonb' },
@@ -53,6 +53,7 @@ themepark:add_proc('node', function(object, data)
 		  tags = object.tags
 		 }
 		)
+		end)
 
 -- ---------------------------------------------------------------------------
 
@@ -65,7 +66,7 @@ themepark:add_proc('way', function(object, data)
     local a = object
     local plot_geom =  object:as_polygon()
 
-    themepark:insert('allotment_plot', {
+    themepark:insert('allotment_plots', {
                   geom = plot_geom,
 		  tags = object.tags
 		 }

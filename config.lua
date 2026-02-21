@@ -62,7 +62,7 @@ themepark:add_topic('shortbread_v1/water')
 -- Must be after "pois" layer, because as per Shortbread spec addresses that
 -- are already in "pois" should not be in the "addresses" layer.
 themepark:add_topic('shortbread_v1/addresses')
-themepark:add_topic('shortbread_v1/allotment_plot_number')
+themepark:add_topic('shortbread_v1/allotment_plot')
 themepark:add_topic('shortbread_v1/allotment_garden_name')
 
 -- ---------------------------------------------------------------------------
