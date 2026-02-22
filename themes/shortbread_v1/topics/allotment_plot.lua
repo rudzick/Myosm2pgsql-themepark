@@ -26,6 +26,16 @@ themepark:add_table{
 }
 
 themepark:add_table{
+    name = 'allotment_plot_entrances',
+    ids_type = 'node',
+    geom = 'point',
+    columns = themepark:columns({
+        { column = 'entrance_tags', type = 'jsonb' , create_only=true },
+        { column = 'plot_tags', type = 'jsonb', create_only=true },
+    })
+}
+
+themepark:add_table{
     name = 'allotment_plots',
     ids_type = 'way',
     geom = 'polygon',

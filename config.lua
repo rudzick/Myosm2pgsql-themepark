@@ -63,7 +63,7 @@ themepark:add_topic('shortbread_v1/water')
 -- are already in "pois" should not be in the "addresses" layer.
 themepark:add_topic('shortbread_v1/addresses')
 themepark:add_topic('shortbread_v1/allotment_plot')
-themepark:add_topic('shortbread_v1/allotment_garden_name')
+themepark:add_topic('shortbread_v1/allotment_gardens')
 
 -- ---------------------------------------------------------------------------
 

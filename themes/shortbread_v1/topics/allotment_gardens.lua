@@ -20,19 +20,37 @@ themepark:add_table{
     },
 }
 
+themepark:add_table{
+    name = 'allotment_gardens',
+    ids_type = 'way',
+    geom = 'polygon',
+    columns = themepark:columns({
+        { column = 'tags', type = 'jsonb' },
+    })
+}
+
 -- ---------------------------------------------------------------------------
 
 themepark:add_proc('way', function(object, data)
 
-    if not object.is_closed then
+    if not object.is_closed or object.tags.landuse ~= 'allotments' then
         return
     end
 
     local a = object
-    if a and a.tags.landuse and a.tags.landuse == 'allotments' then
-        a.geom = object:as_polygon():pole_of_inaccessibility()
+    local allotment_gardens_geom =  object:as_polygon()
+
+    themepark:insert('allotment_gardens', {
+                  geom = allotment_gardens_geom,
+		  tags = object.tags
+		 }
+		)
+
+    if a then
+        a.geom = allotment_gardens_geom:pole_of_inaccessibility()
         themepark:insert('allotment_garden_name', a, object.tags)
     end
+
 end)
 
 -- ---------------------------------------------------------------------------

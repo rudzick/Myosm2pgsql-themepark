@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+#planetfilea=brandenburg-latest.osm.pbf
 planetfilea=berlin-latest.osm.pbf
 #planetfilea=dach-latest.osm.pbf
 #planetfilea=germany-latest.osm.pbf
@@ -17,5 +18,5 @@ fi
 # erstes inkrementelles Datenbankupdate
 $styledir/Server_Update/update_osm_planet_dach_mapnik
 # Zugiff auf Tabellen freigeben
-psql -d themeparktest -c "GRANT pg_read_all_data TO _renderd;"
+psql -d themeparktest -c "GRANT pg_read_all_data TO pgtileserv;"
 

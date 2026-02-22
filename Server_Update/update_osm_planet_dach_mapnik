@@ -4,4 +4,6 @@ styledir=/home/renderaccount/Myosm2pgsql-themepark/
 cd /home/postgres/download
 # inkrementelles Datenbankupdate mit osm2psql-replication
 /usr/bin/osm2pgsql-replication update -d themeparktest --diff-file /home/postgres/download/tp_changes.osc.gz -- -O flex --slim -C 5000  --style $styledir/config.lua
+${styledir}Server_Update/create_allotment_plot_entrances.sh
+
 
