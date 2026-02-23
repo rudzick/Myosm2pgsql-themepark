@@ -361,6 +361,7 @@ sprites:
   sources:
     # SVG images in this directory will be published as a "my_sprites" sprite source
     #my_sprites: /path/to/some_dir
+    versatiles_icons: /home/renderaccount/versatiles-style/icons/icon
 
 # Font configuration
 fonts:
