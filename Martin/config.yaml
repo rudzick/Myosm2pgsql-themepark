@@ -362,6 +362,8 @@ sprites:
     # SVG images in this directory will be published as a "my_sprites" sprite source
     #my_sprites: /path/to/some_dir
     versatiles_icons: /home/renderaccount/versatiles-style/icons/icon
+    carto_sympbols_amenity: /home/renderaccount/Mymapnik_openstreetmap-carto/symbols/amenity
+    carto_sympbols_barrier: /home/renderaccount/Mymapnik_openstreetmap-carto/symbols/barrier
 
 # Font configuration
 fonts:
