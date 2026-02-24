@@ -1,4 +1,4 @@
-# Connection keep alive timeout [default: 75]
+p# Connection keep alive timeout [default: 75]
 keep_alive: 75
 
 # The socket address to bind [default: 0.0.0.0:3000]
@@ -364,6 +364,7 @@ sprites:
     versatiles_icons: /home/renderaccount/versatiles-style/icons/icon
     carto_sympbols_amenity: /home/renderaccount/Mymapnik_openstreetmap-carto/symbols/amenity
     carto_sympbols_barrier: /home/renderaccount/Mymapnik_openstreetmap-carto/symbols/barrier
+    carto_patterns: /home/renderaccount/Mymapnik_openstreetmap-carto/patterns
 
 # Font configuration
 fonts:

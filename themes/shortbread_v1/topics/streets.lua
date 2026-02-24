@@ -24,6 +24,7 @@ themepark:add_table{
         { column = 'service', type = 'text' },
         { column = 'bicycle', type = 'text' },
         { column = 'horse', type = 'text' },
+        { column = 'access', type = 'text' },
         { column = 'layer', type = 'int', not_null = true },
         { column = 'ref', type = 'text' },
         { column = 'ref_rows', type = 'int' },
@@ -343,7 +344,9 @@ themepark:add_proc('way', function(object, data)
         a.service = t.service
         a.bicycle = t.bicycle
         a.horse = t.horse
-
+--  streets with access=private
+        a.access = t.access
+       
         a.z_order = Z_STEP_PER_LAYER * a.layer + hwinfo[1]
         a.minzoom = hwinfo[2]
     elseif t.railway then
