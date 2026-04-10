@@ -61,7 +61,7 @@ web_ui: disable
 # Options:
 # - `warn`: log warning messages
 # - `abort`: log warnings as error messages, abort startup
-on_invalid: abort
+on_invalid: warn
 
 # Advanced monitoring options
 observability:
@@ -123,7 +123,7 @@ postgres:
   # - `calc` compute table geometry bounds on startup.
   # - `quick` same as 'calc', but the calculation will be aborted after 5 seconds.
   # - `skip` does not compute table geometry bounds on startup.
-  auto_bounds: quick
+  auto_bounds: calc
 
   # Enable automatic discovery of tables and functions. [default: null]
   #
