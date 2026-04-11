@@ -65,6 +65,7 @@ themepark:add_topic('shortbread_v1/addresses')
 themepark:add_topic('shortbread_v1/allotment_plot')
 themepark:add_topic('shortbread_v1/allotment_gardens')
 themepark:add_topic('shortbread_v1/barriers')
+themepark:add_topic('shortbread_v1/atm')
 
 -- ---------------------------------------------------------------------------
 

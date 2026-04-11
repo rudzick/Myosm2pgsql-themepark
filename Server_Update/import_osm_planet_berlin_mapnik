@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
-#planetfilea=brandenburg-latest.osm.pbf
+planetfilea=brandenburg-latest.osm.pbf
 #planetfilea=berlin-latest.osm.pbf
-planetfilea=dach-latest.osm.pbf
+#planetfilea=dach-latest.osm.pbf
 #planetfilea=germany-latest.osm.pbf
 styledir=/home/renderaccount/Myosm2pgsql-themepark
 export LUA_PATH="$styledir/lua/?.lua;;"
@@ -12,7 +12,7 @@ then
     rm $planetfilea
 fi
 # Aufbau der lokalen Postgis-Datenbank mit osm2psql
-/usr/bin/wget https://download.geofabrik.de/europe/$planetfilea && /usr/bin/osm2pgsql -O flex --create --slim -C 5000 --style $styledir/config.lua -d themeparktest $planetfilea
+/usr/bin/wget https://download.geofabrik.de/europe/germany/$planetfilea && /usr/bin/osm2pgsql -O flex --create --slim -C 5000 --style $styledir/config.lua -d themeparktest $planetfilea
 # Initialisierung des inkrementellen Datenbankupdates
 /usr/bin/osm2pgsql-replication init -d themeparktest --server 'https://planet.openstreetmap.org/replication/minute'
 # erstes inkrementelles Datenbankupdate
