@@ -13,7 +13,6 @@ themepark:add_table{
     geom = 'point',
     columns = themepark:columns({
         { column = 'tags', type = 'jsonb' },
-        { column = 'isatm', type = 'bool' },
     }),
     tags = { },
     tiles = {
@@ -45,7 +44,6 @@ themepark:add_proc('node', function(object, data)
     themepark:insert('atm', {
                   geom = atm_geom,
 		  tags = object.tags,
-		  isatm = true,
 		 }
 		)
 
