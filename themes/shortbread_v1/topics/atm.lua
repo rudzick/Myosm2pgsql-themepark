@@ -27,6 +27,7 @@ themepark:add_table{
     geom = 'polygon',
     columns = themepark:columns({
         { column = 'tags', type = 'jsonb' },
+        { column = 'piageom', type = 'point' },
     })
 }
 
@@ -34,7 +35,7 @@ themepark:add_table{
 
 themepark:add_proc('node', function(object, data)
 
-    if not object.tags.amenity ~= 'atm' then
+    if object.tags.amenity ~= 'atm' then
         return
     end
 
@@ -57,10 +58,16 @@ themepark:add_proc('way', function(object, data)
     end
 
     local a = object
-
+    local a_geom = object:as_polygon()
+    local pia_geom = object:as_polygon():pole_of_inaccessibility()
+    
     if a then
-        a.geom = object:as_polygon(),
-        themepark:insert('atm_polygon', a, object.tags)
+         themepark:insert('atm_polygons', {
+	 	geom = a_geom,
+		tags= object.tags,
+		piageom = pia_geom
+		}
+		)
     end
 
 end)

@@ -19,4 +19,6 @@ fi
 $styledir/Server_Update/update_osm_planet_dach_mapnik
 # Zugiff auf Tabellen freigeben
 psql -d themeparktest -c "GRANT pg_read_all_data TO pgtileserv;"
+# Erzeuge views für Geldautomaten
+$styledir/create_views_for_atm.sh
 
