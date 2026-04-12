@@ -34,7 +34,7 @@ themepark:add_table{
 
 themepark:add_proc('node', function(object, data)
 
-    if ( object.tags.amenity == 'atm' ) or ( object.tags.atm and ( object.tags.atm ~= 'no' or object.tags.atm ~= 'unknown' )) then
+    if ( object.tags.amenity == 'atm' ) or ( object.tags.atm and not ( object.tags.atm == 'no' or object.tags.atm == 'unknown' )) then
 
        local a = object
        local atm_geom =  object:as_point()
@@ -49,8 +49,12 @@ end)
 
 themepark:add_proc('way', function(object, data)
 
-    if not object.is_closed or object.tags.atm ~= 'yes' then
+    if not object.is_closed or not object.tags.atm then
         return
+    end
+
+    if object.tags.atm == 'no' or object.tags.atm == 'unknown' then
+       return
     end
 
     local a = object
