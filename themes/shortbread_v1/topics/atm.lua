@@ -34,19 +34,17 @@ themepark:add_table{
 
 themepark:add_proc('node', function(object, data)
 
-    if object.tags.amenity ~= 'atm' then
-        return
-    end
+    if ( object.tags.amenity == 'atm' ) or ( object.tags.atm and ( object.tags.atm ~= 'no' or object.tags.atm ~= 'unknown' )) then
 
-    local a = object
-    local atm_geom =  object:as_point()
+       local a = object
+       local atm_geom =  object:as_point()
 
-    themepark:insert('atm', {
-                  geom = atm_geom,
-		  tags = object.tags,
-		 }
-		)
-
+       themepark:insert('atm', {
+		geom = atm_geom,
+		tags = object.tags,
+		     }
+		)    
+    end		
 end)
 
 themepark:add_proc('way', function(object, data)
