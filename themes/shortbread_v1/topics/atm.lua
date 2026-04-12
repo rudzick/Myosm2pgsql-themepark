@@ -27,7 +27,11 @@ themepark:add_table{
     columns = themepark:columns({
         { column = 'tags', type = 'jsonb' },
         { column = 'piageom', type = 'point' },
-    })
+    }),
+    tags = { },
+    tiles = {
+    minzoom = 9,
+	},
 }
 
 -- ---------------------------------------------------------------------------
