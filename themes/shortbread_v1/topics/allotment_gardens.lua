@@ -16,7 +16,7 @@ themepark:add_table{
     }),
     tags = { },
     tiles = {
-        minzoom = 13,
+        minzoom = 12,
     },
 }
 
