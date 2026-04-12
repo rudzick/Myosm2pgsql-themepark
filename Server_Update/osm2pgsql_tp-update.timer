@@ -1,0 +1,12 @@
+[Unit]
+Description=Trigger a osm2pgsql database update
+
+[Timer]
+OnBootSec=60
+#OnUnitActiveSec=5min
+OnUnitInactiveSec=10min
+#OnCalendar=*-*-* 01:04:00
+Unit=osm2pgsql_tp-update.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Keep osm2pgsql database up-to-date
+
+[Service]
+WorkingDirectory=/home/postgres/download
+ExecStart=/home/renderaccount/Myosm2pgsql-themepark/Server_Update/update_osm_planet_dach_mapnik
+StandardOutput=append:/var/log/osm2pgsql_tp-updates.log
+StandardError=append:/var/log/osm2pgsql_tp-updates.errlog
+User=postgres
+Type=simple
+Restart=on-failure
+RestartSec=60
