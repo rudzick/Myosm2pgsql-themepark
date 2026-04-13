@@ -104,7 +104,7 @@ end)
 
 themepark:add_proc('node', function(object, data)
 
-    if ( object.tags.cash_withdrawal and not ( object.tags.cash_withdrawal == 'no' or object.tags.cash_withdrawal == 'unknown' ) then
+    if ( object.tags.cash_withdrawal and not ( object.tags.cash_withdrawal == 'no' or object.tags.cash_withdrawal == 'unknown' ) ) then
 
        local a = object
        local cash_withdrawal_geom =  object:as_point()
