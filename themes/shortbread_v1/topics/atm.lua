@@ -124,26 +124,29 @@ themepark:add_proc('node', function(object, data)
 	end
 
 	local a = object
+	local brand
+	local brandwikidata
+	local operator
+	local operatorwikidata
 	if object.tags.brand then
-	   local brand = string.lower(object.tags.brand)
+	   brand = string.lower(object.tags.brand)
 	else
-	   local brand = ''
+	   brand = ''
 	end
-	print("brand=",brand)
 	if object.tags['brand:wikidata'] then
-	   local brandwikidata = string.lower(object.tags['brand:wikidata'])
+	   brandwikidata = string.lower(object.tags['brand:wikidata'])
 	else
-	   local brandwikidata = ''
+	   brandwikidata = ''
 	end
 	if object.tags.operator then
-	   local operator = string.lower(object.tags.operator)
+	   operator = string.lower(object.tags.operator)
 	else
-	   local operator = ''
+	   operator = ''
 	end
 	if object.tags['operator:wikidata'] then
-	   local operatorwikidata = string.lower(object.tags['operator:wikidata'])
+	   operatorwikidata = string.lower(object.tags['operator:wikidata'])
 	else
-	   local operatorwikidata = ''
+	   operatorwikidata = ''
 	end
 	local cash_withdrawal_geom =  object:as_point()
 	
