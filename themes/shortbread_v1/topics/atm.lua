@@ -129,6 +129,7 @@ themepark:add_proc('node', function(object, data)
 	else
 	   local brand = ''
 	end
+	print("brand=",brand)
 	if object.tags['brand:wikidata'] then
 	   local brandwikidata = string.lower(object.tags['brand:wikidata'])
 	else
