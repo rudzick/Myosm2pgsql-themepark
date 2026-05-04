@@ -1,14 +1,15 @@
 CREATE OR REPLACE VIEW tree_species_view AS
- SELECT p.geom, p.tags,
+ SELECT p.geom,
                           COALESCE( p.tags->>'species:de'
                                              , s.treename
                                              , p.tags->>'genus:de'
                                              , p.tags->>'species'
                                              , p.tags->>'genus'
-                                             ) AS obstbaumart,
+                                             ) AS obstbaumart,			
                          CASE
                             WHEN  tags->>'name' <> 'none' OR tags->>'name:de' <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(tags->>'name:de',tags->>'name'), E'\u201c')
-                        END AS baumname	  
+                        END AS baumname,
+			p.tags - 'ID' AS tree_tags
                 FROM trees p
                 LEFT JOIN tree_species s
                     ON LOWER(p.tags->>'species') = s.treespecies
