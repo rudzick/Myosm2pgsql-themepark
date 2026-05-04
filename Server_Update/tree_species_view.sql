@@ -1,5 +1,5 @@
 CREATE OR REPLACE VIEW tree_species_view AS
- SELECT p.geom,
+ SELECT p.geom, p.tags,
                           COALESCE( p.tags->>'species:de'
                                              , s.treename
                                              , p.tags->>'genus:de'
